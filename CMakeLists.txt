@@ -4,7 +4,11 @@ project (ili9341)
 set (CMAKE_CXX_STANDARD 17)
 set (CMAKE_CXX_STANDARD_REQUIRED true)
 
-include_directories (include include/impl)
+set (CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/CMake/Modules)
+
+find_package (WiringPi REQUIRED)
+
+include_directories (${wiringPi_INCLUDES} include include/impl)
 
 add_library(ili9341
         include/BackBuffer.h
@@ -16,7 +20,10 @@ add_library(ili9341
         src/Rect.cc include/impl/utils.hpp include/impl/span)
 
 target_link_libraries(ili9341
-        wiringPi)
+        ${wiringPi_LIBRARIES})
+
+target_compile_definitions (ili9341
+        PUBLIC ${wiringPi_DEFINITIONS})
 
 add_executable(test_driver
         main.cc)

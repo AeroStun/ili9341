@@ -11,7 +11,7 @@
 
 ili9341::ili9341() {
 	fileDescriptor = wiringPiSPISetup(spiChannel, spiSpeed);
-	if (fileDescriptor <= -1) {
+	if (fileDescriptor < 0) {
 		 std::cout << "Error wiringPiSPISetup" << std::endl;
 		 std::exit(EXIT_FAILURE);
 	}

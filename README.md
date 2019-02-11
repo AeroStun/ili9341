@@ -45,4 +45,4 @@ Commands
 	cd build
 	cmake ..
 	cmake --build .
-	sudo ./ili9341
+	sudo ./test_driver
